@@ -1,6 +1,8 @@
+import datetime
 class Employee:
     raise_amount = 1.04
     num_of_emps = 0
+
     def __init__(self, first_name: str, last_name: str, pay: float) -> None:
         """
         The init method runs when a new emplyee is created.
@@ -9,7 +11,7 @@ class Employee:
         self.last_name = last_name
         self.pay = pay
         self.email = first_name.lower() + "." + last_name.lower() + "@company.com"
-        
+
         Employee.num_of_emps += 1
 
     def fullname(self) -> str:
@@ -19,13 +21,27 @@ class Employee:
         self.pay = int(self.pay * self.raise_amount)
         return self.pay
 
+    @classmethod
+    def set_raise_amount(cls, amount):
+        cls.raise_amount = amount
+
+    @classmethod
+    def from_string(cls, emp_str):
+        first_name, last_name, pay = emp_str.split("-")
+        return cls(first_name, last_name, pay)
+
+
 emp1 = Employee("Louis", "Agyapong", 23000)
 emp2 = Employee("Zion", "Agyapong", 67000)
 Employee.raise_amount = 1.05
+Employee.set_raise_amount(1.08)
 emp1.raise_amount = 1.07
 
-print(Employee.raise_amount)
-print(emp1.raise_amount)
-print(emp1.__dict__)
-print(emp2.raise_amount)
-print(Employee.num_of_emps)
+emp_str_1 = "John-Doe-70000"
+emp_str_2 = "Steve-Smith-245000"
+emp_str_3 = "Jane-Doe-907600"
+
+emp3 = Employee.from_string(emp_str_1)
+print(emp3.fullname())
+print(emp3.email)
+print(emp3.pay)
