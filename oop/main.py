@@ -27,6 +27,9 @@ class Employee:
 
     @classmethod
     def from_string(cls, emp_str):
+        """
+        Class method is used as alternative constructors.
+        """
         first_name, last_name, pay = emp_str.split("-")
         return cls(first_name, last_name, pay)
 
@@ -36,9 +39,16 @@ class Employee:
             return False
         return True
 
+class Developer(Employee):
+    pass
+
 
 emp1 = Employee("Louis", "Agyapong", 23000)
 emp2 = Employee("Zion", "Agyapong", 67000)
+
+dev1 = Developer("Teddy", "Agudogo", 5000)
+dev1.raise_amount = 1.50
+
 Employee.raise_amount = 1.05
 Employee.set_raise_amount(1.08)
 emp1.raise_amount = 1.07
@@ -47,4 +57,6 @@ emp_str_1 = "John-Doe-70000"
 
 my_date = datetime.date(2022, 10, 20)
 print(Employee.is_workday(my_date))
+print(dev1.fullname())
+print(dev1.apply_raise())
 
