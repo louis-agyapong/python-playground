@@ -30,6 +30,12 @@ class Employee:
         first_name, last_name, pay = emp_str.split("-")
         return cls(first_name, last_name, pay)
 
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
+
 
 emp1 = Employee("Louis", "Agyapong", 23000)
 emp2 = Employee("Zion", "Agyapong", 67000)
@@ -38,10 +44,7 @@ Employee.set_raise_amount(1.08)
 emp1.raise_amount = 1.07
 
 emp_str_1 = "John-Doe-70000"
-emp_str_2 = "Steve-Smith-245000"
-emp_str_3 = "Jane-Doe-907600"
 
-emp3 = Employee.from_string(emp_str_1)
-print(emp3.fullname())
-print(emp3.email)
-print(emp3.pay)
+my_date = datetime.date(2022, 10, 20)
+print(Employee.is_workday(my_date))
+
