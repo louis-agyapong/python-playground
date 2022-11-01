@@ -1,4 +1,6 @@
 import datetime
+
+
 class Employee:
     raise_amount = 1.04
     num_of_emps = 0
@@ -15,7 +17,7 @@ class Employee:
         Employee.num_of_emps += 1
 
     def fullname(self) -> str:
-        return f"{emp1.first_name.capitalize()} {emp1.last_name.capitalize()}"
+        return f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
 
     def apply_raise(self) -> int:
         self.pay = int(self.pay * self.raise_amount)
@@ -39,24 +41,74 @@ class Employee:
             return False
         return True
 
+
 class Developer(Employee):
-    pass
+    raise_amount = 1.70
+
+    def __init__(self, first_name: str, last_name: str, pay: float, prog_lang: str) -> None:
+        super().__init__(first_name, last_name, pay)
+        self.prog_lang = prog_lang
+
+
+class Manager(Employee):
+    def __init__(self, first_name: str, last_name: str, pay: float, employees: list[str] = None) -> None:
+        super().__init__(first_name, last_name, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_employee(self, employee):
+        if employee not in self.employees:
+            self.employees.append(employee)
+
+    def remove_employee(self, employee):
+        if employee in self.employees:
+            self.employees.remove(employee)
+
+    def print_employees(self):
+        for employee in self.employees:
+            print(f"'-->' {employee.fullname()}")
+    
+    def total_employees_supv(self) -> int:
+        total_emp_supv: int = 0
+        for employee in self.employees:
+            total_emp_supv += 1
+        return total_emp_supv
 
 
 emp1 = Employee("Louis", "Agyapong", 23000)
 emp2 = Employee("Zion", "Agyapong", 67000)
 
-dev1 = Developer("Teddy", "Agudogo", 5000)
-dev1.raise_amount = 1.50
+dev1 = Developer("Teddy", "Agudogo", 5000, "Python")
+dev1.apply_raise()
+dev2 = Developer("Louis", "Agyapong", 10000, "Java")
+dev3 = Developer("Nana", "Sarpong", 5000, "R")
 
-Employee.raise_amount = 1.05
-Employee.set_raise_amount(1.08)
-emp1.raise_amount = 1.07
+# dev2.apply_raise()
+# print(f"Name: {dev1.fullname()}, Email: {dev1.email}, Salary: {dev1.pay}, Programming Language: {dev1.prog_lang}")
+# print(f"Name: {dev2.fullname()}, Email: {dev2.email}, Salary: {dev2.pay}, Programming Language: {dev2.prog_lang}")
+# print(dev1.__dict__)
 
-emp_str_1 = "John-Doe-70000"
+mgr1 = Manager("Kezia", "Agyapong", 45000, [dev1, dev2, dev3])
+mgr2 = Manager("Rita", "Watson", 15000)
 
-my_date = datetime.date(2022, 10, 20)
-print(Employee.is_workday(my_date))
-print(dev1.fullname())
-print(dev1.apply_raise())
+print(mgr1.fullname())
+print(mgr1.email)
+print(mgr1.is_workday(datetime.date(2022, 10, 20)))
+mgr1.print_employees()
+mgr1.remove_employee(dev1)
+mgr1.print_employees()
+print(mgr1.total_employees_supv())
 
+
+
+
+# print(help(Developer))
+
+# Employee.raise_amount = 1.05
+# Employee.set_raise_amount(1.08)
+# emp1.raise_amount = 1.07
+
+# emp_str_1 = "John-Doe-70000"
+# my_date = datetime.date(2022, 10, 20)
