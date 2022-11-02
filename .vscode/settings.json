@@ -31,4 +31,5 @@
     "workbench.colorCustomizations": {
         "activityBar.activeBorder": "#3b9d22"
     },
+    "python.analysis.typeCheckingMode": "off",
 }
