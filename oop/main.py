@@ -1,5 +1,6 @@
 import datetime
 import http
+from types import NoneType
 
 
 class Employee:
@@ -13,12 +14,28 @@ class Employee:
         self.first_name = first_name
         self.last_name = last_name
         self.pay = pay
-        self.email = first_name.lower() + "." + last_name.lower() + "@company.com"
 
         Employee.num_of_emps += 1
 
+    @property
     def fullname(self) -> str:
         return f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
+
+    @fullname.setter
+    def fullname(self, name: str):
+        first_name, last_name = name.split()
+        self.first_name = first_name
+        self.last_name = last_name
+
+    @fullname.deleter
+    def fullname(self):
+        print("Delete name")
+        self.first_name = None
+        self.last_name = None
+
+    @property
+    def email(self) -> str:
+        return f"{self.first_name.lower()}.{self.last_name.lower()}@company.com"
 
     def apply_raise(self) -> int:
         self.pay = int(self.pay * self.raise_amount)
@@ -90,6 +107,14 @@ class Manager(Employee):
 emp1 = Employee("Louis", "Agyapong", 23000)
 emp2 = Employee("Zion", "Agyapong", 67000)
 
+emp1.fullname = "Nana Sarpong"
+print(emp1.email)
+print(emp1.fullname)
+
+del emp1.fullname
+print(emp1.fullname)
+
+
 dev1 = Developer("Teddy", "Agudogo", 5000, "Python")
 dev1.apply_raise()
 dev2 = Developer("Louis", "Agyapong", 10000, "Java")
@@ -125,5 +150,5 @@ mgr2 = Manager("Rita", "Watson", 15000)
 
 # emp_str_1 = "John-Doe-70000"
 # my_date = datetime.date(2022, 10, 20)
-print(emp1 + emp2)
-print("test".__len__())
+# print(emp1 + emp2)
+# print("test".__len__())
