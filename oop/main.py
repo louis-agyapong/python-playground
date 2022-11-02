@@ -1,4 +1,5 @@
 import datetime
+import http
 
 
 class Employee:
@@ -41,6 +42,15 @@ class Employee:
             return False
         return True
 
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __str__(self) -> str:
+        return f"{self.fullname()}, {self.email}"
+
+    def __repr__(self) -> str:
+        return f"{self.first_name} {self.last_name} {self.pay}"
+
 
 class Developer(Employee):
     raise_amount = 1.70
@@ -69,7 +79,7 @@ class Manager(Employee):
     def print_employees(self):
         for employee in self.employees:
             print(f"'-->' {employee.fullname()}")
-    
+
     def total_employees_supv(self) -> int:
         total_emp_supv: int = 0
         for employee in self.employees:
@@ -93,15 +103,18 @@ dev3 = Developer("Nana", "Sarpong", 5000, "R")
 mgr1 = Manager("Kezia", "Agyapong", 45000, [dev1, dev2, dev3])
 mgr2 = Manager("Rita", "Watson", 15000)
 
-print(mgr1.fullname())
-print(mgr1.email)
-print(mgr1.is_workday(datetime.date(2022, 10, 20)))
-mgr1.print_employees()
-mgr1.remove_employee(dev1)
-mgr1.print_employees()
-print(mgr1.total_employees_supv())
+# print(mgr1.fullname())
+# print(mgr1.email)
+# print(mgr1.is_workday(datetime.date(2022, 10, 20)))
+# mgr1.print_employees()
+# mgr1.remove_employee(dev1)
+# mgr1.print_employees()
+# print(mgr1.total_employees_supv())
+# print(isinstance(mgr1, Developer))
+# print(issubclass(Developer, Employee))
 
-
+# print(mgr1.__str__())
+# print(mgr1.__repr__())
 
 
 # print(help(Developer))
@@ -112,3 +125,5 @@ print(mgr1.total_employees_supv())
 
 # emp_str_1 = "John-Doe-70000"
 # my_date = datetime.date(2022, 10, 20)
+print(emp1 + emp2)
+print("test".__len__())
