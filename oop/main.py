@@ -111,8 +111,8 @@ emp1.fullname = "Nana Sarpong"
 print(emp1.email)
 print(emp1.fullname)
 
-del emp1.fullname
-print(emp1.fullname)
+# del emp1.fullname
+# print(emp1.fullname)
 
 
 dev1 = Developer("Teddy", "Agudogo", 5000, "Python")
