@@ -27,6 +27,12 @@ class Employee:
         first, last, pay = emp_str.split("-")
         return cls(first, last, pay)
 
+    @staticmethod
+    def isworkday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
+
 
 emp_str_1 = "Zion-Kwaku-5000"
 emp_str_2 = "Afia-Sika-4000"
