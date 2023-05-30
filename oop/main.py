@@ -14,7 +14,7 @@ class Employee:
         return f"{self.first} {self.last}"
 
     def apply_raise(self):
-        self.pay = int(self.pay * Employee.raise_amount)
+        self.pay = int(self.pay * self.raise_amount)
         return self.pay
 
     @classmethod
@@ -34,12 +34,48 @@ class Employee:
         return True
 
 
-emp_str_1 = "Zion-Kwaku-5000"
-emp_str_2 = "Afia-Sika-4000"
-emp_str_3 = "Maame-Afia-30000"
-emp_str_4 = "Paa-Yaw-50000"
+class Developer(Employee):
+    raise_amount = 1.10
 
-new_emp_1 = Employee.fromstring(emp_str_1)
+    def __init__(self, first: str, last: str, pay: int, prog_lang) -> None:
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
 
-print(new_emp_1.fullname())
-print(new_emp_1.pay)
+
+class Manager(Employee):
+    def __init__(self, first: str, last: str, pay: int, employees: list = None) -> None:
+        super().__init__(first, last, pay)
+        self.employees = employees
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_employee(self, employee):
+        if employee not in self.employees:
+            self.employees.append(employee)
+
+    def remove_employee(self, employee):
+        if employee in self.employees:
+            self.employees.remove(employee)
+
+    def print_employees(self):
+        for employee in self.employees:
+            print(employee.fullname())
+
+dev_1 = Developer("Louis", "Agyapong", 8000, "Python")
+dev_2 = Developer("Nana", "Osei", 6000, "Java")
+
+mger_1 = Manager("Kesse", "Norma", 12000, [dev_1])
+
+print(mger_1.email)
+
+mger_1.add_employee(dev_2)
+mger_1.print_employees()
+print(isinstance(mger_1, Manager))
+# print(dev_1.fullname())
+# print(dev_1.prog_lang)
+# dev_1.apply_raise()
+# print(dev_1.pay)
+
+# print(help(Developer))
