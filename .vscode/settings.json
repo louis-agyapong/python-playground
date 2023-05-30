@@ -1,35 +1,19 @@
 {
     "python.formatting.provider": "black",
-    "python.sortImports.args": [
-        "--profile=black",
-    ],
-    "python.formatting.blackArgs": [
-        "--line-length=119"
-    ],
+    "isort.args": ["--profile=black"],
+    "python.formatting.blackArgs": ["--line-length", "100"],
     "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
-        // "editor.defaultFormatter": null,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+      // "editor.defaultFormatter": null,
     },
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true,
-    // Django extension
-    "files.associations": {
-        "**/*.html": "html",
-        "**/templates/**/*.html": "django-html",
-        "**/templates/**/*": "django-txt",
-        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
-    },
     "emmet.includeLanguages": {
-        "django-html": "html"
+      "django-html": "html"
     },
-    "python.linting.mypyArgs": [
-        "--max-line-length=119"
-    ],
-    "workbench.colorCustomizations": {
-        "activityBar.activeBorder": "#3b9d22"
-    },
-    "python.analysis.typeCheckingMode": "off",
-}
+    "python.linting.mypyArgs": ["--max-line-length=119"]
+  }
+  
