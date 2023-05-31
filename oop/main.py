@@ -22,7 +22,7 @@ class Employee:
         return f"{self.first} {self.last}"
 
     @fullname.deleter
-    def fullname(self, name):
+    def fullname(self):
         print("Delete name")
         self.first = None
         self.last = None
