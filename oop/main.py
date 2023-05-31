@@ -10,8 +10,22 @@ class Employee:
 
         Employee.num_of_emps += 1
 
+    @property
     def fullname(self) -> str:
         return f"{self.first} {self.last}"
+
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(" ")
+        self.first = first
+        self.last = last
+        return f"{self.first} {self.last}"
+
+    @fullname.deleter
+    def fullname(self, name):
+        print("Delete name")
+        self.first = None
+        self.last = None
 
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
