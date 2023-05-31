@@ -33,6 +33,18 @@ class Employee:
             return False
         return True
 
+    def __repr__(self) -> str:
+        return f"{self.fullname()} {self.pay}"
+
+    def __str__(self) -> str:
+        return f"{self.fullname()} {self.email}"
+
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.fullname())
+
 
 class Developer(Employee):
     raise_amount = 1.10
@@ -63,16 +75,21 @@ class Manager(Employee):
         for employee in self.employees:
             print(employee.fullname())
 
+
 dev_1 = Developer("Louis", "Agyapong", 8000, "Python")
 dev_2 = Developer("Nana", "Osei", 6000, "Java")
 
 mger_1 = Manager("Kesse", "Norma", 12000, [dev_1])
+print(mger_1)
+print(mger_1.__init__)
+print(dev_1 + dev_2)
+print(len(mger_1))
 
-print(mger_1.email)
+# print(mger_1.email)
 
-mger_1.add_employee(dev_2)
-mger_1.print_employees()
-print(isinstance(mger_1, Manager))
+# mger_1.add_employee(dev_2)
+# mger_1.print_employees()
+# print(isinstance(mger_1, Manager))
 # print(dev_1.fullname())
 # print(dev_1.prog_lang)
 # dev_1.apply_raise()
