@@ -99,6 +99,9 @@ print(mger_1.__init__)
 print(dev_1 + dev_2)
 print(len(mger_1))
 
+# print(dev_1.__dict__)
+print(Developer.__dict__)
+
 # print(mger_1.email)
 
 # mger_1.add_employee(dev_2)
